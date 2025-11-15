@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clàudia's Netflix</title>
+
+    <!-- Fuente moderna de Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+
+    <style>
+        /* ----- Estilos generales ----- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: #000;
+            color: #fff;
+        }
+
+        /* ----- Cabecera ----- */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 80px;
+            z-index: 10;
+            background-color: #000;
+        }
+
+        .logo {
+            font-family: 'Bebas Neue', sans-serif; /* Nueva fuente */
+            font-size: 42px;
+            letter-spacing: 2px;
+            color: #e50914;
+        }
+
+        .subtitle {
+            font-size: 14px;
+            color: #fff;
+            margin-top: 5px;
+            max-width: 250px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #fff;
+            margin-left: 25px;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #e50914;
+        }
+
+        /* ----- Contenido principal ----- */
+        .content {
+            display: flex;
+            align-items: center;
+            max-width: 1000px;
+            margin: 180px auto 50px auto; /* margen superior para dejar espacio a la cabecera */
+            padding: 20px;
+            gap: 40px;
+        }
+
+        .content img {
+            width: 300px;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 10px;
+            transition: transform 0.3s ease, filter 0.3s ease;
+        }
+
+        /* Hover en imagen */
+        .content img:hover {
+            transform: scale(1.05);
+            filter: brightness(1.2);
+        }
+
+        .text {
+            max-width: 600px;
+            text-align: justify;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+        }
+
+        h1 {
+            color: #e50914;
+            margin-bottom: 10px;
+        }
+
+        .intro {
+            font-style: italic;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        @media (max-width: 800px) {
+            .content {
+                flex-direction: column;
+                text-align: center;
+            }
+            .content img {
+                width: 250px;
+                height: 250px;
+            }
+            .text {
+                max-width: 100%;
+                text-align: justify;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Cabecera -->
+    <header>
+        <div>
+            <div class="logo">CLÀUDIA'S NETFLIX</div>
+            <div class="subtitle">Espacio donde comparto mis opiniones sobre películas y series de Netflix.</div>
+        </div>
+        <nav>
+            <a href="sobrenetflix.html">Sobre Netflix</a>
+            <a href="reviews.html">Reviews</a>
+            <a href="contacto.html">Contacto</a>
+        </nav>
+    </header>
+
+    <!-- Contenido principal -->
+    <div class="content">
+        <img src="netflix.jpg" alt="Netflix">
+        <div class="text">
+            <h1>Sobre Netflix</h1>
+            <div class="intro">Descubre cómo Netflix ha cambiado la forma en que vemos entretenimiento en todo el mundo.</div>
+            <p>
+                Netflix es una de las plataformas de streaming más importantes del mundo, reconocida por su amplia variedad de series, películas y documentales originales. Desde su creación, ha transformado la manera en que las personas disfrutan del entretenimiento en casa, apostando por producciones propias que han marcado tendencia.
+            </p>
+            <p>
+                En este espacio descubrirás curiosidades, historia y algunos datos sobre cómo Netflix ha llegado a ser el gigante del streaming que conocemos hoy.
+            </p>
+        </div>
+    </div>
+
+</body>
+</html>

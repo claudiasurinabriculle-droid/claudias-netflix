@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reviews - CLÀUDIA'S NETFLIX</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #111;
+      color: white;
+    }
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: rgba(0,0,0,0.7);
+      padding: 10px 40px;
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      z-index: 2;
+      border-radius: 0 0 10px 10px;
+    }
+
+    .navbar a {
+      color: white;
+      text-decoration: none;
+      font-size: 1.1em;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    .navbar a:hover {
+      color: #e50914;
+    }
+
+    .intro {
+      text-align: center;
+      margin-top: 100px;
+    }
+
+    .intro h1 a {
+      color: white;
+      text-decoration: none;
+    }
+
+    .intro h1 a:hover {
+      text-decoration: underline;
+    }
+
+    .reviews {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      padding: 60px 50px;
+    }
+
+    .card {
+      background-color: #222;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.6);
+      text-align: center;
+      transition: transform 0.3s;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+    }
+
+    .card img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .card h3 {
+      color: #e50914;
+      margin-top: 10px;
+    }
+
+    .card p {
+      font-size: 0.95em;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="navbar">
+    <a href="index.html">Inicio</a>
+    <a href="sobre-netflix.html">Sobre Netflix</a>
+    <a href="reviews.html">Reviews</a>
+    <a href="contacto.html">Contacto</a>
+  </div>
+
+  <div class="intro">
+    <h1><a href="index.html">CLÀUDIA'S NETFLIX</a></h1>
+  </div>
+
+  <div class="reviews">
+    <div class="card">
+      <img src="papel.jpg" alt="papel">
+      <h3>La Casa de Papel</h3>
+      <p><strong>Género:</strong> Acción / Suspenso<br>
+      <strong>Temporadas:</strong> 5<br>
+      <strong>Año:</strong> 2017</p>
+    </div>
+
+    <div class="card">
+      <img src="respira.jpg" alt="respira">
+      <h3>Respira</h3>
+      <p><strong>Género:</strong> Drama<br>
+      <strong>Temporadas:</strong> 1<br>
+      <strong>Año:</strong> 2022</p>
+    </div>
+
+    <div class="card">
+      <img src="gossip.jpg" alt="gossip">
+      <h3>Gossip Girl</h3>
+      <p><strong>Género:</strong> Drama / Juvenil<br>
+      <strong>Temporadas:</strong> 6<br>
+      <strong>Año:</strong> 2007</p>
+    </div>
+
+    <div class="card">
+      <img src="cable.jpg" alt="cable">
+      <h3>Las Chicas del Cable</h3>
+      <p><strong>Género:</strong> Drama / Histórico<br>
+      <strong>Temporadas:</strong> 5<br>
+      <strong>Año:</strong> 2017</p>
+    </div>
+  </div>
+
+</body>
+</html>
