@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reviews - Clàudia's Netflix</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="C.png" type="image/png">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto&display=swap" rel="stylesheet">
+
+    <style>
+        /* -------- RESET -------- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: #000;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* -------- HEADER -------- */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 80px;
+            z-index: 10;
+            background-color: #0a0a0a;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            transition: top 0.4s ease;
+        }
+
+        .logo-container {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 42px;
+            letter-spacing: 2px;
+            color: #e50914;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 25px;
+            font-size: 16px;
+            transition: 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #e50914;
+        }
+
+        nav a.active {
+            text-decoration: underline;
+        }
+
+        /* -------- SECCIÓN INTRO -------- */
+        .section {
+            width: 100%;
+            padding: 180px 60px 80px 60px;
+            background-color: #111;
+            text-align: center;
+        }
+
+        .section h2 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 50px;
+            margin-bottom: 20px;
+        }
+
+        /* -------- REVIEWS -------- */
+        .reviews-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .review-card {
+            background-color: #1a1a1a;
+            width: 250px;
+            text-align: center;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .review-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px #e50914;
+        }
+
+        .review-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .review-content {
+            padding: 15px;
+        }
+
+        .review-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+
+        .review-stars {
+            color: #FFD700; /* amarillo brillante */
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .review-text {
+            font-family: 'Roboto', sans-serif;
+            font-size: 14px;
+            line-height: 1.5;
+            text-align: center;
+        }
+
+        /* -------- SECCIÓN CONTACTO -------- */
+        .contact-section {
+            background-color: #000000;
+            color: #fff;
+            padding: 20px 40px;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
+
+        .contact-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .contact-logo img {
+            width: 80px;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 14px;
+        }
+
+        .contact-item .icon {
+            width: 24px;
+            height: 24px;
+        }
+
+        /* -------- MEDIA QUERIES -------- */
+        @media (max-width: 768px) {
+            header {
+                padding: 20px 30px;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            nav {
+                margin-top: 10px;
+            }
+
+            .reviews-container {
+                flex-direction: column;
+                gap: 20px;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- CABECERA -->
+    <header id="mainHeader">
+        <div class="logo-container">
+            <div class="logo">CLÀUDIA'S NETFLIX</div>
+        </div>
+        <nav>
+            <a href="index.html">Inicio</a>
+            <a href="sobrenetflix.html">Sobre Netflix</a>
+            <a href="reviews.html" class="active">Reviews</a>
+            <a href="contacto.html">Contacto</a>
+        </nav>
+    </header>
+
+    <!-- SECCIÓN REVIEWS -->
+    <section class="section">
+        <h2>Reviews</h2>
+
+        <div class="reviews-container">
+           <div class="review-card">
+    <a href="chicascable.html" style="text-decoration: none; color: inherit;">
+        <img src="cable.jpg" alt="Cable">
+        <div class="review-content">
+            <div class="review-title">Las Chicas Del Cable</div>
+            <div class="review-stars">★★★★★</div>
+            <div class="review-text">Romantico / Drama</div>
+        </div>
+    </a>
+</div>
+
+            <div class="review-card">
+                <img src="notting.jpg" alt="Notting Hill">
+                <div class="review-content">
+                    <div class="review-title">Notting Hill</div>
+                    <div class="review-stars">★★★★★</div>
+                    <div class="review-text">Comedia / Romántica</div>
+                </div>
+            </div>
+
+            <div class="review-card">
+                <img src="metamorfosis.jpg" alt="Metamorfosis">
+                <div class="review-content">
+                    <div class="review-title">Metamorfosis</div>
+                    <div class="review-stars">★★★★★</div>
+                    <div class="review-text">Musical / Biográfico</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN DE CONTACTO -->
+    <section class="contact-section">
+        <div class="contact-container">
+            <div class="contact-logo">
+                <img src="C.png" alt="Logo Clàudia's Netflix">
+            </div>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <img src="correoo.png" alt="Correo" class="icon">
+                    <span>claudiasnetflix@gmail.com</span>
+                </div>
+                <div class="contact-item">
+                    <img src="tell.png" alt="Teléfono" class="icon">
+                    <span>+34 617 951 819</span>
+                </div>
+                <div class="contact-item">
+                    <img src="redess.png" alt="Redes" class="icon">
+                    <span>@claudiasntfx</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Desaparecer header al hacer scroll
+        let prevScrollpos = window.pageYOffset;
+        window.onscroll = function() {
+            let currentScrollPos = window.pageYOffset;
+            const header = document.getElementById("mainHeader");
+            if (prevScrollpos > currentScrollPos) {
+                header.style.top = "0";
+            } else {
+                header.style.top = "-120px";
+            }
+            prevScrollpos = currentScrollPos;
+        }
+    </script>
+
+</body>
+</html>
