@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crea tu perfil - Clàudia's Netflix</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="C.png" type="image/png">
+
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: #000;
+  color: #fff;
+  font-family: Arial, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+.mini-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background: #141414;
+  border-bottom: 1px solid #333;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+.mini-header .left { font-family: 'Bebas Neue', sans-serif; font-size: 24px; color: #E50914; }
+.spacer { height: 60px; }
+
+/* Título perfiles */
+#titulo-perfiles {
+  text-align:center;
+  font-family:'Bebas Neue', sans-serif;
+  margin-top:70px;
+  margin-bottom:20px;
+  color:#fff;
+  font-size:60px;
+}
+
+/* Perfiles */
+.profiles-container {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
+  flex: 1;
+}
+.profile-card {
+  background: #141414;
+  border-radius: 10px;
+  width: 150px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s;
+  position: relative;
+  border: 2px solid #E50914;
+}
+.profile-card:hover { transform: scale(1.05); }
+.profile-card img { width: 80px; height: 80px; border-radius: 50%; border: 2px solid #E50914; margin-bottom: 10px; }
+.profile-card .profile-name { font-family: 'Bebas Neue', sans-serif; text-align: center; color: #fff; }
+.profile-card.disabled { opacity: 0.5; cursor: default; }
+.delete-icon { position: absolute; top: 8px; right: 8px; font-size: 18px; background: rgba(0,0,0,0.6); padding: 4px 6px; border-radius: 6px; cursor: pointer; display: none; }
+.profile-card:hover .delete-icon { display: block; }
+#create-profile-btn { font-size: 48px; color: #E50914; font-weight: bold; display: flex; align-items: center; justify-content: center; }
+
+/* Modal */
+.modal-bg { position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.7); display: none; justify-content: center; align-items: center; z-index: 2000; }
+.modal { background: #141414; padding: 20px; border-radius: 10px; width: 350px; max-width: 90%; }
+.modal input, .modal select { width: 100%; padding: 10px; margin: 10px 0; border-radius: 6px; border: none; font-size: 16px; }
+.modal button { width: 100%; padding: 10px; background: #E50914; color: #fff; border: none; border-radius: 6px; font-family: 'Bebas Neue', sans-serif; cursor: pointer; font-size: 18px; }
+.modal button:hover { background: #ff1a1a; }
+
+/* Biblioteca */
+.catalog-title { font-size: 48px; margin: 20px 0 10px 0; position: relative; padding-left: 12px; color: #fff; font-family: 'Bebas Neue', sans-serif; text-transform: uppercase; }
+.catalog-title::before { content: ""; position: absolute; left: 0; top: 5px; width: 4px; height: 80%; background: #E50914; border-radius: 2px; }
+.catalog-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; padding-bottom: 40px; }
+.catalog-grid .item { background: #141414; border-radius: 8px; overflow: hidden; cursor: pointer; position: relative; }
+.catalog-grid .item.selected::after { content: "❤️"; position: absolute; top: 5px; right: 5px; font-size: 20px; }
+.catalog-grid .img-wrapper { width: 100%; height: 250px; border-radius: 8px; overflow: hidden; }
+.catalog-grid .img-wrapper img { width: 100%; height: 100%; object-fit: cover; }
+
+.favorites-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; }
+.favorites-tags .tag { padding: 6px 12px; background: #E50914; border-radius: 20px; font-size: 14px; cursor: default; color: #fff; }
+.tag.profile-color { background-color: var(--perfil-color) !important; }
+
+
+#back-btn { 
+  padding: 6px 12px; 
+  font-size: 14px; 
+  font-family:'Bebas Neue', sans-serif; 
+  background:#E50914; 
+  color:#fff; 
+  border:none; 
+  border-radius:6px; 
+  cursor:pointer; 
+  position: fixed; 
+  bottom: 20px; 
+  left: 20px; 
+  z-index: 1000;
+}
+
+footer {
+  background: #141414;
+  padding: 15px 20px;
+  text-align: center;
+  color: #fff;
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer-logo {
+  width: 80px; /* más pequeño */
+  height: auto;
+}
+
+.footer-icons {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer-icons a img {
+  width: 30px;  /* tamaño de los iconos */
+  height: 30px;
+  object-fit: contain;
+  transition: transform 0.2s;
+}
+
+.footer-icons a img:hover {
+  transform: scale(1.2);
+}
+
+/* Catalog scroll */
+#catalog-section { overflow-y: auto; }
+
+/* ---- CARPETAS VERTICALES ---- */
+.library-folders-vertical {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 200px;
+  flex-shrink: 0;
+}
+
+.library-folders-vertical .folder {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: transform .2s;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+}
+
+.library-folders-vertical .folder:hover { transform: scale(1.05); }
+
+.library-folders-vertical .folder-icon {
+  width: 40px;
+  height: 40px;
+  filter: brightness(1.1);
+  margin-right: 10px;
+  border-radius: 6px;
+}
+
+.profiles-container {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
+  flex: 1;
+
+  /* NUEVO: espacio extra para que no quede pegado al footer */
+  padding-bottom: 100px; /* ajusta el número a lo que quieras */
+}
+
+.perfil-menu {
+    position: absolute;
+    top: 60px; 
+    right: 20px;
+    background: #141414;
+    padding: 12px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    opacity: 0;
+    pointer-events: none;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.7);
+    transition: opacity 0.3s ease;
+    z-index: 2000;
+}
+
+.perfil-menu.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.perfil-opcion-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: white;
+    text-decoration: none;
+    padding: 8px 10px;
+    border-radius: 8px;
+    transition: background 0.2s ease;
+}
+
+.perfil-opcion-box:hover {
+    background: #222;
+}
+
+.perfil-opcion-box img {
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+</style>
+</head>
+<body>
+
+<div class="mini-header">
+  <div class="left">CLÀUDIA'S NETFLIX</div>
+  <div class="right" style="display:flex; align-items:center; gap:12px;">
+    <img src="lupa.png" alt="Buscar perfil" style="width:24px; height:24px; cursor:pointer;" id="buscar-perfil">
+    <img id="perfil-btn" src="serie.jpg" alt="Foto perfil" style="width:30px; height:30px; border-radius:6px; cursor:pointer;">
+  </div>
+</div>
+
+<!-- Menú de perfiles -->
+<div id="perfil-menu" class="perfil-menu">
+    <a href="catalogo.html" class="perfil-opcion-box">
+        <img src="pelis.jpg" alt="Catálogo">
+        <span>Catálogo</span>
+    </a>
+
+    <a href="casosexito.html" class="perfil-opcion-box">
+        <img src="casos.jpg" alt="Casos de éxito">
+        <span>Casos de éxito</span>
+    </a>
+</div>
+
+<div class="spacer"></div>
+
+<!-- Página principal de perfiles -->
+<h2 id="titulo-perfiles">Crea tu perfil</h2>
+<div id="profiles" class="profiles-container"></div>
+
+<!-- Modal -->
+<div class="modal-bg" id="modal-bg">
+  <div class="modal">
+    <h2 style="text-align:center; font-family:'Bebas Neue', sans-serif; margin-bottom:15px;">Crear tu perfil</h2>
+    <input type="text" id="new-profile-name" placeholder="Nombre del perfil">
+    <label>Avatar</label>
+    <select id="new-profile-avatar">
+      <option value="avatar.jpg">Avatar 1-Madelyn Cline</option>
+      <option value="avatarr.jpg">Avatar 2-Miguel Bernardeau</option>
+      <option value="avatarrr.jpg">Avatar 3-Úrsula Corberó</option>
+      <option value="avatarrrr.jpg">Avatar 4-Rudy Pankow</option>
+      <option value="avatarrrrr.jpg">Avatar 5-Jenna Ortega</option>
+      <option value="avatarrrrrr.jpg">Avatar 6-Phoebe Dynevor</option>
+    </select>
+    <label>Color del perfil</label>
+    <input type="color" id="new-profile-color" value="#E50914">
+    <button id="create-profile-confirm">Crear Perfil</button>
+  </div>
+</div>
+
+<!-- Catálogo -->
+<section id="catalog-section" style="display:none; padding:20px; display:flex; gap:20px; margin-top:20px;">
+  <div class="library-folders-vertical">
+    <div class="folder" data-folder="series">
+        <img src="carpeta.png" class="folder-icon">
+        <span>Series</span>
+    </div>
+
+    <div class="folder" data-folder="películas">
+        <img src="carpeta.png" class="folder-icon">
+        <span>Películas</span>
+    </div>
+
+    <div class="folder" data-folder="documentales">
+        <img src="carpeta.png" class="folder-icon">
+        <span>Documentales</span>
+    </div>
+  </div>
+
+  <div style="flex:1; position:relative;">
+    <h2 class="catalog-title">Mi biblioteca</h2>
+    <div id="favorites-container" class="favorites-tags"></div>
+    <div id="main-catalog" class="catalog-grid"></div>
+  </div>
+</section>
+
+<button id="back-btn">← Volver a los perfiles</button>
+
+<footer>
+  <!-- Logo centrado -->
+  <img src="C.png" alt="Netflix Logo" class="footer-logo">
+
+  <!-- Iconos de contacto -->
+  <div class="footer-icons">
+    <a href="claudiasnetflix@gmail.com"><img src="correoo.png" alt="Correo"></a>
+    <a href="tel:+34 617951819"><img src="tell.png" alt="Teléfono"></a>
+    <a href="@claudiasntfx" target="_blank"><img src="redess.png" alt="Instagram"></a>
+  </div>
+</footer>
+
+<script>
+// JS original
+const todasPeliculas = [
+  {nombre:"el diario de noah", tipo:"películas", genero:["romance","comedia"], img:"noah.jpg"},
+  {nombre:"call me by your name", tipo:"películas", genero:["romance","drama"], img:"name.jpg"},
+  {nombre:"la sociedad de la nieve", tipo:"películas", genero:["suspense","aventura"], img:"nieve.jpg"},
+  {nombre:"the map that leads to you", tipo:"películas", genero:["drama","romance"], img:"map.jpg"},
+  {nombre:"tu a londres y yo a california", tipo:"películas", genero:["comedia"], img:"londres.jpg"},
+  {nombre:"la llamada", tipo:"películas", genero:["comedia","musical"], img:"llamada.jpg"},
+  {nombre:"the jockey", tipo:"películas", genero:["suspense","drama"], img:"jockey.jpg"},
+  {nombre:"lift", tipo:"películas", genero:["acción","comedia"], img:"lift.jpg"},
+  {nombre:"disco ibiza locomía", tipo:"películas", genero:["drama","musical"], img:"ibiza.jpg"},
+  {nombre:"diecisiete", tipo:"películas", genero:["drama","comedia"], img:"17.jpg"},
+  {nombre:"malasaña 32", tipo:"películas", genero:["terror"], img:"32.jpg"},
+  {nombre:"adú", tipo:"películas", genero:["drama"], img:"adu.jpg"},
+  {nombre:"mi mejor amiga anne frank", tipo:"películas", genero:["drama"], img:"anne.jpg"},
+  {nombre:"escape", tipo:"películas", genero:["suspense","comedia"], img:"escape.jpg"},
+  {nombre:"el correo", tipo:"películas", genero:["suspense","comedia"], img:"correo.jpg"},
+  {nombre:"la huella del mal", tipo:"películas", genero:["suspense"], img:"huella.jpg"},
+  {nombre:"lo imposible", tipo:"películas", genero:["suspense","aventura"], img:"imposible.jpg"},
+  {nombre:"el guardian invisible", tipo:"películas", genero:["suspense"], img:"guardian.jpg"},
+  {nombre:"don't listen", tipo:"películas", genero:["terror"], img:"listen.jpg"},
+  {nombre:"notting hill", tipo:"películas", genero:["romance","comedia"], img:"hill.jpg"},
+  {nombre:"el niño con el pijama de rayas", tipo:"películas", genero:["suspense"], img:"rayas.jpg"},
+  {nombre:"sin instrucciones", tipo:"películas", genero:["drama","comedia"], img:"sin.jpg"},
+  {nombre:"el practicante", tipo:"películas", genero:["suspense"], img:"practicante.jpg"},
+  {nombre:"el arbol de la sangre", tipo:"películas", genero:["drama","suspense"], img:"sangre.jpg"},
+  {nombre:"el tren de los niños", tipo:"películas", genero:["drama"], img:"tren.jpg"},
+  {nombre:"a pesar de todo", tipo:"películas", genero:["drama","comedia"], img:"todo.jpg"},
+  {nombre:"titanic", tipo:"películas", genero:["romance","aventura"], img:"titanic.jpg"},
+  {nombre:"bajo volcan", tipo:"películas", genero:["acción","romance"], img:"volcan.jpg"},
+  {nombre:"don't look up", tipo:"películas", genero:["comedia"], img:"up.jpg"},
+  {nombre:"el verano que vivimos", tipo:"películas", genero:["romance","drama"], img:"verano.jpg"},
+  {nombre:"my oxford year", tipo:"películas", genero:["romance","comedia"], img:"year.jpg"},
+  {nombre:"veronica", tipo:"películas", genero:["terror"], img:"veronica.jpg"},
+  {nombre:"la mujer de la ventana", tipo:"películas", genero:["suspense","terror"], img:"ventanas.jpg"},
+  {nombre:"el fotógrafo de mauthausen", tipo:"películas", genero:["suspense"], img:"mario.jpg"},
+  {nombre:"la mujer del camarote 10", tipo:"películas", genero:["suspense"], img:"camarote.jpg"},
+  {nombre:"montecarlo", tipo:"películas", genero:["comedia"], img:"carlo.jpg"},
+  {nombre:"a tres metros sobre el cielo", tipo:"películas", genero:["romance"], img:"3.jpg"},
+  {nombre:"bajocero", tipo:"películas", genero:["acción"], img:"bajocero.jpg"},
+  {nombre:"la jefa", tipo:"películas", genero:["suspense"], img:"control.jpg"},
+  {nombre:"triple frontera", tipo:"películas", genero:["acción"], img:"frontera.jpg"},
+  {nombre:"la llorona", tipo:"películas", genero:["terror"], img:"llorona.jpg"},
+  {nombre:"familia", tipo:"películas", genero:["drama"], img:"familia.jpg"},
+  {nombre:"ocho apellidos catalanes", tipo:"películas", genero:["comedia","romance"], img:"ocho.jpg"},
+  {nombre:"cualquiera menos tú", tipo:"películas", genero:["comedia","romance"], img:"tu.jpg"},
+  {nombre:"toc toc", tipo:"películas", genero:["comedia"], img:"toc.jpg"},
+  {nombre:"a través de mi ventana", tipo:"películas", genero:["romance"], img:"ventana.jpg"},
+  {nombre:"entre dos mundos", tipo:"películas", genero:["romance"], img:"mundos.jpg"},
+  {nombre:"bajo terapia", tipo:"películas", genero:["romance"], img:"bajo.jpg"},
+  {nombre:"sueños de trenes", tipo:"películas", genero:["drama"], img:"sueños.jpg"},
+  {nombre:"padre no hay mas que uno cinco", tipo:"películas", genero:["comedia"], img:"5.jpg"},
+  {nombre:"el encanto del champan", tipo:"películas", genero:["comedia","romance"], img:"encanto.jpg"},
+  {nombre:"robo muy navideño", tipo:"películas", genero:["comedia","romance"], img:"robo.jpg"},
+  {nombre:"ocho apellidos marroquis", tipo:"películas", genero:["comedia","romance"], img:"marroqui.jpg"},
+  {nombre:"fall", tipo:"películas", genero:["suspense"], img:"fall.jpg"},
+  {nombre:"mala influencia", tipo:"películas", genero:["drama","romance"], img:"mala.jpg"},
+  {nombre:"adolescencia", tipo:"series", genero:["drama","comedia"], img:"adolescencia.jpg"},
+  {nombre:"outer banks", tipo:"series", genero:["drama","comedia"], img:"banks.jpg"},
+  {nombre:"el barco", tipo:"series", genero:["drama","comedia"], img:"elbarco.jpg"},
+  {nombre:"elite", tipo:"series", genero:["drama","comedia"], img:"elite.jpg"},
+  {nombre:"gilmore girls", tipo:"series", genero:["drama","comedia"], img:"girls.jpg"},
+  {nombre:"el internado", tipo:"series", genero:["drama","comedia"], img:"internadolg.jpg"},
+  {nombre:"merli", tipo:"series", genero:["drama","comedia"], img:"merli.jpg"},
+  {nombre:"black mirror", tipo:"series", genero:["drama","comedia"], img:"mirror.jpg"},
+  {nombre:"prision break", tipo:"series", genero:["drama","comedia"], img:"prision.jpg"},
+  {nombre:"emily en paris", tipo:"series", genero:["drama","comedia"], img:"paris.jpg"},
+  {nombre:"you", tipo:"series", genero:["drama","comedia"], img:"you.jpg"},
+  {nombre:"valeria", tipo:"series", genero:["drama","comedia"], img:"valeria.jpg"},
+  {nombre:"las chicas del cable", tipo:"series", genero:["drama","comedia"], img:"chicascable.jpg"},
+  {nombre:"gossip girl", tipo:"series", genero:["drama","romance"], img:"gossipgirl.jpg"},
+  {nombre:"la casa de papel", tipo:"series", genero:["acción","suspense"], img:"casadepapel.jpg"},
+  {nombre:"física o química", tipo:"series", genero:["drama","romance"], img:"quimica.jpg"},
+  {nombre:"jaguar", tipo:"series", genero:["drama","comedia"], img:"jaguar.jpg"},
+  {nombre:"ni una más", tipo:"series", genero:["drama","comedia"], img:"mas.jpg"},
+  {nombre:"paquita salas", tipo:"series", genero:["drama"], img:"paquita.jpg"},
+  {nombre:"el cuerpo en llamas", tipo:"series", genero:["suspense"], img:"llamas.jpg"},
+  {nombre:"tu no eres especial", tipo:"series", genero:["drama"], img:"especial.jpg"},
+  {nombre:"velvet", tipo:"series", genero:["drama"], img:"velvet.jpg"},
+  {nombre:"el cuco de cristal", tipo:"series", genero:["suspense"], img:"cuco.jpg"},
+  {nombre:"respira", tipo:"series", genero:["drama","acción"], img:"respira1.jpg"},
+  {nombre:"dos tumbas", tipo:"series", genero:["suspense"], img:"tumbas.jpg"},
+  {nombre:"stranger things", tipo:"series", genero:["terror","suspense"], img:"stranger.jpg"},
+  {nombre:"dia cero", tipo:"series", genero:["suspense"], img:"cero.jpg"},
+  {nombre:"aqui no hay quien viva", tipo:"series", genero:["romance","comedia"], img:"viva.jpg"},
+  {nombre:"sexo en nueva york", tipo:"series", genero:["romance"], img:"city.jpg"},
+  {nombre:"ginny y georgia", tipo:"series", genero:["drama"], img:"ginny.jpg"},
+  {nombre:"the office", tipo:"series", genero:["comedia"], img:"office.jpg"},
+  {nombre:"sex education", tipo:"series", genero:["drama"], img:"sex.jpg"},
+  {nombre:"un cuento perfecto", tipo:"series", genero:["romance"], img:"perfecto.jpg"},
+  {nombre:"breaking bad", tipo:"series", genero:["drama"], img:"bad.jpg"},
+  {nombre:"la reina del flow", tipo:"series", genero:["drama"], img:"flow.jpg"},
+  {nombre:"la piloto", tipo:"series", genero:["acción"], img:"piloto.jpg"},
+  {nombre:"los bridgerton", tipo:"series", genero:["romance"], img:"bridgerton.jpg"},
+  {nombre:"the good doctor", tipo:"series", genero:["drama"], img:"doctor.jpg"},
+  {nombre:"mi vida con los chicos walter", tipo:"series", genero:["romance"], img:"walter.jpg"},
+  {nombre:"manual para señoritas", tipo:"series", genero:["comedia"], img:"manual.jpg"},
+  {nombre:"old money", tipo:"series", genero:["romance"], img:"old.jpg"},
+  {nombre:"dahmer", tipo:"series", genero:["suspense"], img:"dahmer.jpg"},
+  {nombre:"no vengas a casa", tipo:"series", genero:["drama"], img:"casa.jpg"},
+  {nombre:"black summer", tipo:"series", genero:["terror"], img:"summer.jpg"},
+  {nombre:"ares", tipo:"series", genero:["terror"], img:"ares.jpg"},
+  {nombre:"absentia", tipo:"series", genero:["drama"], img:"absentia.jpg"},
+  {nombre:"el jardinero", tipo:"series", genero:["suspense"], img:"jardi.jpg"},
+  {nombre:"vis a vis", tipo:"series", genero:["drama"], img:"vis.jpg"},
+  {nombre:"el principe", tipo:"series", genero:["romance","suspense"], img:"principe.jpg"},
+  {nombre:"la ultima noche en tremor", tipo:"series", genero:["suspense"], img:"tremor.jpg"},
+  {nombre:"mano de hierro", tipo:"series", genero:["suspense"], img:"hierro.jpg"},
+  {nombre:"el inocente", tipo:"series", genero:["suspense"], img:"inocente.jpg"},
+  {nombre:"mi dulce niña", tipo:"series", genero:["suspense"], img:"niña.jpg"},
+  {nombre:"envidiosa", tipo:"series", genero:["comedia"], img:"envidiosa.jpg"},
+  {nombre:"la favorita 1922", tipo:"series", genero:["comedia"], img:"favorita.jpg"},
+  {nombre:"la agente encubierta", tipo:"series", genero:["comedia"], img:"agente.jpg"},
+  {nombre:"plats bruts", tipo:"series", genero:["comedia"], img:"bruts.jpg"},
+  {nombre:"el caso alcasser", tipo:"documentales", genero:["docu"], img:"alcasser.jpg"},
+  {nombre:"el caso asunta", tipo:"documentales", genero:["docu"], img:"asunta.jpg"},
+  {nombre:"11M", tipo:"documentales", genero:["docu"], img:"madrid.jpg"},
+  {nombre:"900 dias sin anabel", tipo:"documentales", genero:["docu"], img:"anabel.jpg"},
+  {nombre:"dos catalunyes", tipo:"documentales", genero:["docu"], img:"catalunya.jpg"},
+  {nombre:"los niños perdidos", tipo:"documentales", genero:["docu"], img:"perdidos.jpg"},
+  {nombre:"no estas sola", tipo:"documentales", genero:["docu"], img:"sola.jpg"},
+  {nombre:"800 metros", tipo:"documentales", genero:["docu"], img:"800.jpg"},
+  {nombre:"donde está marta", tipo:"documentales", genero:["docu"], img:"marta.jpg"},
+  {nombre:"el fotografo y el cartero", tipo:"documentales", genero:["docu"], img:"cartero.png"},
+  {nombre:"la vecina perfecta", tipo:"documentales", genero:["docu"], img:"vecina.jpg"},
+  {nombre:"el misterio de la familia carman", tipo:"documentales", genero:["docu"], img:"carman.jpg"},
+  {nombre:"el caso eloà", tipo:"documentales", genero:["docu"], img:"eloa.jpg"},
+  {nombre:"titán", tipo:"documentales", genero:["docu"], img:"titan.jpg"},
+  {nombre:"encantadora de tiburones", tipo:"documentales", genero:["docu"], img:"tiburon.jpg"},
+  {nombre:"los 14 ochomiles", tipo:"documentales", genero:["docu"], img:"14.jpg"},
+  {nombre:"mi padre, el asesino BTK", tipo:"documentales", genero:["docu"], img:"asesino.jpg"},
+  {nombre:"Duki", tipo:"documentales", genero:["docu"], img:"duki.jpg"},
+  {nombre:"que hizo jennifer", tipo:"documentales", genero:["docu"], img:"jennifer.jpg"},
+  {nombre:"el dilema de las redes", tipo:"documentales", genero:["docu"], img:"dilema.jpg"},
+  {nombre:"las cintas de rosa peral", tipo:"documentales", genero:["docu"], img:"rosa.jpg"},
+  {nombre:"los hermanos menendez", tipo:"documentales", genero:["docu"], img:"menendez.jpg"},
+  {nombre:"un viaje al infinito", tipo:"documentales", genero:["docu"], img:"infinito.jpg"},
+  {nombre:"el último vuelo del sunbreeze", tipo:"documentales", genero:["docu"], img:"vuelo.jpg"},
+  {nombre:"los dias azules", tipo:"documentales", genero:["docu"], img:"azules.jpg"},
+  {nombre:"pamela anderson", tipo:"documentales", genero:["docu"], img:"pamela.jpg"},
+  {nombre:"la madre de las estafas", tipo:"documentales", genero:["docu"], img:"estafas.jpg"},
+  {nombre:"numero desconocido", tipo:"documentales", genero:["docu"], img:"falsa.jpg"},
+  {nombre:"soy eddie", tipo:"documentales", genero:["docu"], img:"eddie.jpg"},
+  {nombre:"el hombre araña de parís", tipo:"documentales", genero:["docu"], img:"araña.jpg"},
+  {nombre:"miss americana", tipo:"documentales", genero:["docu"], img:"miss.jpg"},
+  {nombre:"13/11 atentados en paris", tipo:"documentales", genero:["docu"], img:"13.jpg"},
+  {nombre:"la segunda guerra mundial desde el frente", tipo:"documentales", genero:["docu"], img:"guerra.jpg"},
+  {nombre:"metamorfosis", tipo:"documentales", genero:["docu"], img:"aitana.jpg"},
+  {nombre:"el ultimo baile", tipo:"documentales", genero:["docu"], img:"baile.png"},
+  {nombre:"crims", tipo:"documentales", genero:["docu"], img:"crims.jpg"},
+  {nombre:"la tierra de noche", tipo:"documentales", genero:["docu"], img:"tierra.jpg"},
+  {nombre:"caceria implacable", tipo:"documentales", genero:["docu"], img:"caceria.jpg"},
+  {nombre:"atentado en londres", tipo:"documentales", genero:["docu"], img:"londress.jpg"},
+  {nombre:"MH370", tipo:"documentales", genero:["docu"], img:"370.jpg"},
+  {nombre:"Baraja", tipo:"documentales", genero:["docu"], img:"baraja.jpg"},
+  {nombre:"tour de francia", tipo:"documentales", genero:["docu"], img:"tour.jpg"},
+  {nombre:"momentos decisivos 11S", tipo:"documentales", genero:["docu"], img:"momentos.jpg"},
+  {nombre:"victoria beckham", tipo:"documentales", genero:["docu"], img:"victoria.jpg"},
+  {nombre:"nuestros oceanos", tipo:"documentales", genero:["docu"], img:"oceanos.jpg"},
+  {nombre:"como cambiar tu mente", tipo:"documentales", genero:["docu"], img:"mente.jpg"},
+  {nombre:"america's sweetheart", tipo:"documentales", genero:["docu"], img:"america.jpg"},
+  {nombre:"andes magicos", tipo:"documentales", genero:["docu"], img:"andes.jpg"},
+  {nombre:"babies", tipo:"documentales", genero:["docu"], img:"babies.jpg"},
+  {nombre:"accidente nuclear", tipo:"documentales", genero:["docu"], img:"nuclear.jpg"},
+  {nombre:"chicas desaparecidas", tipo:"documentales", genero:["docu"], img:"chicas.jpg"},
+  {nombre:"el caso de fernando baez sosa", tipo:"documentales", genero:["docu"], img:"baez.jpg"},
+  {nombre:"el volcan", tipo:"documentales", genero:["docu"], img:"volcanes.jpg"},
+];
+
+let usuarioActualId = localStorage.getItem('usuarioId') || (Math.random()+""); 
+localStorage.setItem('usuarioId', usuarioActualId);
+let perfiles = JSON.parse(localStorage.getItem('perfiles')) || [];
+let perfilActivo = null;
+
+const profilesContainer = document.getElementById('profiles');
+const catalogSection = document.getElementById('catalog-section');
+const mainCatalog = document.getElementById('main-catalog');
+const favoritesContainer = document.getElementById('favorites-container');
+const tituloPerfiles = document.getElementById('titulo-perfiles');
+const backBtn = document.getElementById('back-btn');
+
+const folders = document.querySelectorAll('.library-folders-vertical .folder');
+let folderSeleccionada = null;
+
+// Carpetas
+let pantallaFavoritos = true; // nueva variable para controlar favoritos vs carpeta
+
+folders.forEach(folder => {
+  folder.addEventListener('click', () => {
+    if(folderSeleccionada === folder.dataset.folder){
+      // Si ya está seleccionada → volver a favoritos
+      folderSeleccionada = null;
+      pantallaFavoritos = true;
+    } else {
+      folderSeleccionada = folder.dataset.folder;
+      pantallaFavoritos = false;
+    }
+    renderCatalog();
+  });
+});
+
+// Render de perfiles
+function renderPerfiles() {
+  tituloPerfiles.style.display = 'block';
+  catalogSection.style.display = 'none';
+  profilesContainer.style.display = 'flex';
+  profilesContainer.innerHTML = '';
+  perfiles.forEach((p, idx) => {
+    const card = document.createElement('div');
+    card.classList.add('profile-card');
+    if(p.ownerId !== usuarioActualId) card.classList.add('disabled');
+    const img = document.createElement('img'); img.src = p.avatar;
+    const name = document.createElement('div'); name.classList.add('profile-name'); name.textContent = p.name;
+    const deleteIcon = document.createElement('div');
+    deleteIcon.classList.add('delete-icon'); deleteIcon.textContent = "🗑️";
+    deleteIcon.addEventListener("click", (e) => {
+      e.stopPropagation();
+      if(p.ownerId === usuarioActualId && confirm(`¿Eliminar el perfil "${p.name}"?`)){
+        perfiles.splice(idx,1);
+        localStorage.setItem('perfiles', JSON.stringify(perfiles));
+        renderPerfiles();
+      }
+    });
+    card.appendChild(deleteIcon);
+    card.appendChild(img);
+    card.appendChild(name);
+    card.addEventListener('click', () => {
+      if(p.ownerId === usuarioActualId){ activarPerfil(idx); } 
+      else { alert("No puedes abrir este perfil, solo el dueño puede acceder."); }
+    });
+    profilesContainer.appendChild(card);
+  });
+
+  const createCard = document.createElement('div');
+  createCard.classList.add('profile-card');
+  createCard.id = 'create-profile-btn';
+  createCard.textContent = '+';
+  createCard.addEventListener('click', ()=>document.getElementById('modal-bg').style.display='flex');
+  profilesContainer.appendChild(createCard);
+}
+
+// Activar perfil
+function activarPerfil(idx){
+  perfilActivo = perfiles[idx];
+  catalogSection.style.display='flex';
+  profilesContainer.style.display='none';
+  tituloPerfiles.style.display = 'none';
+  folderSeleccionada = null; // null significa "mostrar solo favoritos"
+  pantallaFavoritos = true;   // mostrar solo favoritos al entrar
+  aplicarColorPerfil();
+  renderCatalog();
+}
+
+// Aplicar color del perfil
+function aplicarColorPerfil(){
+  if(!perfilActivo) return;
+  document.body.style.setProperty('--perfil-color', perfilActivo.color);
+}
+
+// Render del catálogo
+function renderCatalog(){
+  mainCatalog.innerHTML=''; 
+  favoritesContainer.innerHTML='';
+
+  // Mostrar favoritos en etiquetas
+  perfilActivo.favoritos.forEach(f=>{
+    const tag = document.createElement('div');
+    tag.classList.add('tag', 'profile-color');
+    tag.textContent = f;
+    favoritesContainer.appendChild(tag);
+  });
+
+  // Filtrado:
+  let mostrar;
+  if(pantallaFavoritos){
+    mostrar = todasPeliculas.filter(item => perfilActivo.favoritos.includes(item.nombre));
+  } else if(folderSeleccionada){
+    mostrar = todasPeliculas.filter(item => item.tipo === folderSeleccionada);
+  } else {
+    mostrar = []; // por seguridad
+  }
+
+  mostrar.forEach(item=>{
+    const div = document.createElement('div'); 
+    div.classList.add('item');
+    if(perfilActivo.favoritos.includes(item.nombre)) div.classList.add('selected');
+    const wrapper = document.createElement('div'); 
+    wrapper.classList.add('img-wrapper');
+    const img = document.createElement('img'); 
+    img.src = item.img; 
+    img.alt = item.nombre;
+    wrapper.appendChild(img); 
+    div.appendChild(wrapper);
+
+    // Marcar/desmarcar favoritos
+    div.addEventListener('click', ()=>{
+      if(perfilActivo.favoritos.includes(item.nombre)){
+        perfilActivo.favoritos = perfilActivo.favoritos.filter(f=>f!==item.nombre);
+      } else perfilActivo.favoritos.push(item.nombre);
+      localStorage.setItem('perfiles', JSON.stringify(perfiles));
+      renderCatalog();
+    });
+
+    mainCatalog.appendChild(div);
+  });
+}
+
+// Botón volver
+backBtn.addEventListener('click', ()=>{ renderPerfiles(); });
+
+// Crear nuevo perfil
+document.getElementById('create-profile-confirm').addEventListener('click', ()=>{
+  const name = document.getElementById('new-profile-name').value.trim();
+  const avatar = document.getElementById('new-profile-avatar').value;
+  const color = document.getElementById('new-profile-color').value;
+  if(name){
+    perfiles.push({name, avatar, color, favoritos: [], ownerId: usuarioActualId});
+    localStorage.setItem('perfiles', JSON.stringify(perfiles));
+    document.getElementById('modal-bg').style.display='none';
+    document.getElementById('new-profile-name').value='';
+    renderPerfiles();
+  }
+});
+
+// Buscar perfil
+document.getElementById('buscar-perfil').addEventListener('click', () => {
+  const nombreBuscado = prompt("Escribe el nombre del perfil a buscar:");
+  if (!nombreBuscado) return;
+  const idx = perfiles.findIndex(p => p.name.toLowerCase() === nombreBuscado.toLowerCase());
+  if (idx !== -1) {
+    if(perfiles[idx].ownerId === usuarioActualId){ activarPerfil(idx); } 
+    else { alert("No puedes abrir este perfil, solo el dueño puede acceder."); }
+  } else { alert(`No se encontró ningún perfil con el nombre "${nombreBuscado}".`); }
+});
+
+// Inicial
+renderPerfiles();
+
+    const perfilBtn = document.getElementById("perfil-btn");
+    const perfilMenu = document.getElementById("perfil-menu");
+
+    perfilBtn.addEventListener("click", () => {
+        perfilMenu.classList.toggle("show");
+    });
+
+    // Cerrar si se hace clic fuera
+    document.addEventListener("click", (e) => {
+        if (!perfilMenu.contains(e.target) && !perfilBtn.contains(e.target)) {
+            perfilMenu.classList.remove("show");
+        }
+    });
+</script>
+</body>
+</html>
