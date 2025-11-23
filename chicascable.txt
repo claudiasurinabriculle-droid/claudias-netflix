@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review - Las Chicas del Cable</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="C.png" type="image/png">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto&display=swap" rel="stylesheet">
+
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background-color: #000; color: #fff; font-family: 'Roboto', sans-serif; overflow-x: hidden; }
+
+        /* -------- MINI HEADER -------- */
+        .mini-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background: #141414;
+            border-bottom: 1px solid #333;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        .mini-header .left {
+            font-size: 24px;
+            color: #E50914;
+            font-family: 'Bebas Neue', sans-serif;
+        }
+        .mini-header .right button {
+            padding: 6px 12px;
+            background-color: #E50914;
+            border: none;
+            border-radius: 6px;
+            color: #fff;
+            font-family: 'Roboto', sans-serif;
+            cursor: pointer;
+            font-size: 14px;
+            transition: transform 0.2s;
+        }
+        .mini-header .right button:hover {
+            transform: scale(1.05);
+        }
+
+        .spacer { height: 60px; } /* MÁS ESPACIO desde el mini-header */
+
+        /* -------- SECCIÓN REVIEW -------- */
+        .review-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            max-width: 1000px;
+            margin: 60px auto 40px auto; /* separación superior ya aplicada */
+            padding: 20px;
+        }
+
+        .review-image-container {
+            flex: 1 1 220px;
+            max-width: 280px;
+        }
+
+        .review-image-container img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-top: 80px;
+        }
+
+        .review-text-container {
+            flex: 2 1 500px;
+            color: #ccc;
+        }
+
+        .review-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .review-subtitle {
+            font-style: italic;
+            font-size: 18px;
+            color: #e6e6e6;
+            margin-bottom: 25px;
+        }
+
+        .review-text {
+            font-size: 16px;
+            line-height: 1.8;
+            text-align: justify;
+            color: #ccc;
+            margin-bottom: 20px;
+        }
+
+        .review-footer {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .review-footer img {
+            height: 16px;
+            object-fit: contain;
+        }
+
+        .review-footer span {
+            font-size: 12px;
+            color: #999;
+        }
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #000;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* hace que el contenido ocupe toda la altura */
+}
+
+main {
+    flex: 1; /* esto empuja el footer hacia abajo si hay poco contenido */
+}
+
+/* -------- FOOTER -------- */
+footer {
+    background-color: #141414;
+    color: #fff;
+    text-align: center;
+    padding: 15px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 100%; /* de pared a pared */
+}
+
+.footer-logo { width: 80px; height: auto; }
+.footer-icons { display: flex; gap: 15px; justify-content: center; align-items: center; }
+.footer-icons a img { width: 30px; height: 30px; object-fit: contain; transition: transform 0.2s; }
+.footer-icons a img:hover { transform: scale(1.2); }
+
+    </style>
+</head>
+<body>
+
+    <!-- MINI HEADER -->
+    <div class="mini-header">
+        <div class="left">CLÀUDIA'S NETFLIX</div>
+        <div class="right">
+            <button onclick="window.location.href='reviews.html'">Volver a Reviews</button>
+        </div>
+    </div>
+
+    <div class="spacer"></div>
+
+<main>
+    <!-- SECCIÓN REVIEW -->
+    <section class="review-section">
+        <!-- Imagen a la izquierda -->
+        <div class="review-image-container">
+            <img src="chicascable.jpg" alt="Las Chicas del Cable">
+        </div>
+
+        <!-- Texto de la review a la derecha -->
+        <div class="review-text-container">
+            <h1 class="review-title">LAS CHICAS DEL CABLE</h1>
+
+    <!-- 5 estrellas -->
+    <div style="color: #FFD700; font-size: 20px; margin: 5px 0 15px 0;">★★★★★</div>
+            <p class="review-subtitle">Una serie que combina drama y romance con la historia de mujeres luchando por su independencia.</p>
+
+            <p class="review-text">
+                Ambientada en el Madrid de los años 20, Las Chicas del Cable narra la vida de cuatro mujeres que trabajan como telefonistas en una compañía de telecomunicaciones. La serie destaca por su narrativa intensa, personajes muy bien desarrollados y un enfoque feminista que refleja la lucha por la libertad y la independencia en una época complicada.
+            </p>
+
+            <p class="review-text">
+                La historia es muy interesante, con actores excelentes y momentos duros que muestran la realidad que muchas mujeres vivieron. A lo largo de la serie, las protagonistas luchan por sus derechos, enfrentándose a desafíos personales y sociales, desde sus primeros trabajos como chicas del cable hasta las difíciles circunstancias de la guerra en las últimas temporadas. Es una serie entretenida, que engancha y también nos permite entender cómo era la vida de las mujeres en esa época. La recomiendo totalmente.
+            </p>
+
+        </div>
+
+<!-- SECCIÓN ACTORES -->
+<section class="actors-section" style="max-width: 1000px; margin: 40px auto; padding: 0 20px;">
+    <h2 style="font-family: 'Bebas Neue', sans-serif; font-size: 36px; color: #fff; margin-bottom: 20px;">ACTORES</h2>
+
+<div style="display: flex; gap: 15px; overflow-x: auto; padding-bottom: 10px;">
+    <div style="flex: 0 0 auto; text-align: center; color: #ccc;">
+        <img src="blanca.jpg" alt="Blanca" style="width: 150px; height: 150px; border-radius: 10px; object-fit: cover; margin-bottom: 8px;">
+        <div style="font-size: 14px; font-weight: bold;">Blanca Suárez</div>
+        <div style="font-size: 12px; font-style: italic; color: #aaa;">Lidia Aguilar</div>
+    </div>
+    <div style="flex: 0 0 auto; text-align: center; color: #ccc;">
+        <img src="ana.jpg" alt="Ana" style="width: 150px; height: 150px; border-radius: 10px; object-fit: cover; margin-bottom: 8px;">
+        <div style="font-size: 14px; font-weight: bold;">Ana Fernández</div>
+        <div style="font-size: 12px; font-style: italic; color: #aaa;">Carlota Rodríguez</div>
+    </div>
+        <div style="flex: 0 0 auto; text-align: center; color: #ccc;">
+        <img src="fran.jpg" alt="Ana" style="width: 150px; height: 150px; border-radius: 10px; object-fit: cover; margin-bottom: 8px;">
+        <div style="font-size: 14px; font-weight: bold;">Yon González</div>
+        <div style="font-size: 12px; font-style: italic; color: #aaa;">Francisco Gómez</div>
+    </div>
+    <div style="flex: 0 0 auto; text-align: center; color: #ccc;">
+        <img src="rivas.jpg" alt="Ana" style="width: 150px; height: 150px; border-radius: 10px; object-fit: cover; margin-bottom: 8px;">
+        <div style="font-size: 14px; font-weight: bold;">Martiño Rivas</div>
+        <div style="font-size: 12px; font-style: italic; color: #aaa;">Carlos Cifuentes</div>
+    </div>
+    <div style="flex: 0 0 auto; text-align: center; color: #ccc;">
+        <img src="nadia.jpg" alt="Ana" style="width: 150px; height: 150px; border-radius: 10px; object-fit: cover; margin-bottom: 8px;">
+        <div style="font-size: 14px; font-weight: bold;">Nadia de Santiago</div>
+        <div style="font-size: 12px; font-style: italic; color: #aaa;">Marga</div>
+    </div>
+    <div style="flex: 0 0 auto; text-align: center; color: #ccc;">
+        <img src="sara.jpg" alt="Ana" style="width: 150px; height: 150px; border-radius: 10px; object-fit: cover; margin-bottom: 8px;">
+        <div style="font-size: 14px; font-weight: bold;">Ana Polvorosa</div>
+        <div style="font-size: 12px; font-style: italic; color: #aaa;">Sara Millán</div>
+    </div>
+    <div style="flex: 0 0 auto; text-align: center; color: #ccc;">
+        <img src="vidal.jpg" alt="Ana" style="width: 150px; height: 150px; border-radius: 10px; object-fit: cover; margin-bottom: 8px;">
+        <div style="font-size: 14px; font-weight: bold;">Maggie Civantos</div>
+        <div style="font-size: 12px; font-style: italic; color: #aaa;">Ángeles Vidal</div>
+    </div>
+    <div style="flex: 0 0 auto; text-align: center; color: #ccc;">
+        <img src="nico.jpg" alt="Ana" style="width: 150px; height: 150px; border-radius: 10px; object-fit: cover; margin-bottom: 8px;">
+        <div style="font-size: 14px; font-weight: bold;">Nico Romero</div>
+        <div style="font-size: 12px; font-style: italic; color: #aaa;">Pablo</div>
+    </div>
+
+</div>
+
+<!-- SECCIÓN RODAJE -->
+<section class="rodaje-section" style="max-width: 1000px; margin: 40px auto; padding: 0 20px;">
+    <h2 style="font-family: 'Bebas Neue', sans-serif; font-size: 36px; color: #fff; margin-bottom: 20px;">RODAJE</h2>
+
+    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px;">
+        <img src="rodaje1.jpg" alt="Rodaje 1" style="width: 100%; height: 120px; border-radius: 10px; object-fit: cover;">
+        <img src="rodaje2.jpg" alt="Rodaje 2" style="width: 100%; height: 120px; border-radius: 10px; object-fit: cover;">
+        <img src="rodaje3.jpg" alt="Rodaje 3" style="width: 100%; height: 120px; border-radius: 10px; object-fit: cover;">
+        <img src="rodaje4.jpg" alt="Rodaje 4" style="width: 100%; height: 120px; border-radius: 10px; object-fit: cover;">
+        <img src="rodaje5.jpg" alt="Rodaje 5" style="width: 100%; height: 120px; border-radius: 10px; object-fit: cover;">
+        <img src="rodaje6.jpg" alt="Rodaje 6" style="width: 100%; height: 120px; border-radius: 10px; object-fit: cover;">
+        <img src="rodaje7.jpg" alt="Rodaje 7" style="width: 100%; height: 120px; border-radius: 10px; object-fit: cover;">
+        <img src="rodaje8.jpg" alt="Rodaje 8" style="width: 100%; height: 120px; border-radius: 10px; object-fit: cover;">
+    </div>
+</section>
+
+<!-- SECCIÓN PREMIERE -->
+<section class="premiere-section" style="max-width: 1000px; margin: 40px auto; padding: 0 20px;">
+    <h2 style="font-family: 'Bebas Neue', sans-serif; font-size: 36px; color: #fff; margin-bottom: 5px;">PREMIERE</h2>
+    <p style="font-size: 14px; color: #aaa; margin-bottom: 20px;">28 d'abril del 2017</p>
+
+    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px;">
+        <img src="cable1.jpg" alt="Premiere 1" style="width: 100%; height: 120px; border-radius: 10px; object-fit: cover;">
+        <img src="cable4.jpg" alt="Premiere 2" style="width: 100%; height: 120px; border-radius: 10px; object-fit: cover;">
+        <img src="cable3.jpg" alt="Premiere 3" style="width: 100%; height: 120px; border-radius: 10px; object-fit: cover;">
+        <img src="cable6.jpg" alt="Premiere 4" style="width: 100%; height: 120px; border-radius: 10px; object-fit: cover;">
+        <img src="cable5.jpg" alt="Premiere 5" style="width: 100%; height: 120px; border-radius: 10px; object-fit: cover;">
+        <img src="cable2.jpg" alt="Premiere 6" style="width: 100%; height: 120px; border-radius: 10px; object-fit: cover;">
+        <img src="cable7.jpg" alt="Premiere 7" style="width: 100%; height: 120px; border-radius: 10px; object-fit: cover;">
+        <img src="cable10.jpg" alt="Premiere 8" style="width: 100%; height: 120px; border-radius: 10px; object-fit: cover;">
+    </div>
+</section>
+
+</main>
+    <!-- FOOTER -->
+    <footer>
+        <img src="C.png" alt="Netflix Logo" class="footer-logo">
+        <div class="footer-icons">
+            <a href="mailto:claudiasnetflix@gmail.com"><img src="correoo.png" alt="Correo"></a>
+            <a href="tel:+34 617951819"><img src="tell.png" alt="Teléfono"></a>
+            <a href="@claudiasntfx" target="_blank"><img src="redess.png" alt="Instagram"></a>
+        </div>
+    </footer>
+
+</body>
+</html>

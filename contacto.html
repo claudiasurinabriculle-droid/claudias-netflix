@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - Clàudia's Netflix</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="C.png" type="image/png">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto&display=swap" rel="stylesheet">
+
+    <style>
+        /* -------- RESET -------- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        body {
+            background-color: #000;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* -------- HEADER -------- */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 80px;
+            z-index: 10;
+            background-color: #0a0a0a;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            transition: top 0.4s ease;
+        }
+
+        .logo-container .logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 42px;
+            letter-spacing: 2px;
+            color: #e50914;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 25px;
+            font-size: 16px;
+            transition: 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #e50914;
+        }
+
+        nav a.active {
+            text-decoration: underline;
+        }
+
+        /* -------- SECCIÓN CONTACTO -------- */
+        .contact-section {
+            background-color: #111;
+            color: #fff;
+            padding: 180px 60px 80px 60px; /* espacio extra por la cabecera fija */
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .contact-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            max-width: 1000px;
+            margin: auto;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .contact-info-container {
+            flex: 1;
+            min-width: 280px;
+        }
+
+        .contact-info-container h2 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 40px;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        .contact-info-container p {
+            margin-bottom: 25px;
+            font-size: 16px;
+            line-height: 1.6;
+            color: #ccc;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+
+        .contact-item .icon {
+            width: 24px;
+            height: 24px;
+            transition: transform 0.3s ease;
+        }
+
+        .contact-item .icon:hover {
+            transform: scale(1.2);
+        }
+
+        .contact-form-container {
+            flex: 1;
+            min-width: 280px;
+        }
+
+        .contact-form-container form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .contact-form-container input,
+        .contact-form-container textarea {
+            padding: 12px;
+            border-radius: 8px;
+            border: none;
+            outline: none;
+            font-size: 16px;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .contact-form-container input:focus,
+        .contact-form-container textarea:focus {
+            box-shadow: 0 0 5px #e50914;
+        }
+
+        .contact-form-container button {
+            padding: 12px;
+            border-radius: 8px;
+            border: none;
+            background-color: #e50914;
+            color: #fff;
+            font-size: 16px;
+            font-family: 'Bebas Neue', sans-serif;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .contact-form-container button:hover {
+            background-color: #ff1a2d;
+        }
+
+        /* MEDIA QUERIES */
+        @media (max-width: 768px) {
+            header {
+                padding: 20px 30px;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            nav {
+                margin-top: 10px;
+            }
+
+            .contact-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .contact-info-container,
+            .contact-form-container {
+                width: 100%;
+                max-width: 400px;
+                text-align: center;
+            }
+
+            .contact-item {
+                justify-content: center;
+            }
+        }
+
+.mini-footer {
+    background-color: #000; /* fondo negro */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 0; /* altura compacta */
+}
+
+.mini-footer .footer-logo {
+    width: 70px; /* ajusta el tamaño a tu gusto */
+    height: auto;
+}
+
+    </style>
+</head>
+<body>
+
+    <!-- CABECERA -->
+    <header id="mainHeader">
+        <div class="logo-container">
+            <div class="logo">CLÀUDIA'S NETFLIX</div>
+        </div>
+        <nav>
+            <a href="index.html">Inicio</a>
+            <a href="sobrenetflix.html">Sobre Netflix</a>
+            <a href="reviews.html">Reviews</a>
+            <a href="contacto.html" class="active">Contacto</a>
+        </nav>
+    </header>
+
+    <!-- SECCIÓN DE CONTACTO -->
+    <section class="contact-section">
+        <div class="contact-container">
+            <!-- IZQUIERDA: INFO -->
+            <div class="contact-info-container">
+                <h2>Contacto</h2>
+                <p>¡Escríbeme y te responderé lo antes posible!</p>
+                <div class="contact-item">
+                    <img src="correoo.png" alt="Correo" class="icon">
+                    <span>claudiasnetflix@gmail.com</span>
+                </div>
+                <div class="contact-item">
+                    <img src="tell.png" alt="Teléfono" class="icon">
+                    <span>+34 617 951 819</span>
+                </div>
+                <div class="contact-item">
+                    <img src="redess.png" alt="Redes" class="icon">
+                    <span>@claudiasntfx</span>
+                </div>
+            </div>
+
+            <!-- DERECHA: FORMULARIO -->
+            <div class="contact-form-container">
+                <form>
+                    <input type="text" placeholder="Nombre" required>
+                    <input type="email" placeholder="Correo" required>
+                    <textarea placeholder="Mensaje" rows="5" required></textarea>
+                    <button type="submit">Enviar</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+<!-- MINI FOOTER -->
+<footer class="mini-footer">
+    <img src="C.png" alt="Logo Clàudia's Netflix" class="footer-logo">
+</footer>
+
+    <script>
+        // Desaparecer header al hacer scroll
+        let prevScrollpos = window.pageYOffset;
+        window.onscroll = function() {
+            let currentScrollPos = window.pageYOffset;
+            const header = document.getElementById("mainHeader");
+            if (prevScrollpos > currentScrollPos) {
+                header.style.top = "0";
+            } else {
+                header.style.top = "-120px";
+            }
+            prevScrollpos = currentScrollPos;
+        }
+    </script>
+
+</body>
+</html>
+

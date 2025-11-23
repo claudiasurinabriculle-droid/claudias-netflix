@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Casos de Éxito - Clàudia's Netflix</title>
+
+  <link rel="icon" href="C.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: Arial, sans-serif; background-color: #000; color: #fff; }
+    h1, h2, h3, h4, .title { font-family: 'Bebas Neue', sans-serif; letter-spacing: 1px; text-transform: uppercase; }
+    .mini-header { display: flex; justify-content: space-between; align-items: center; padding: 10px 20px; background: #141414; border-bottom: 1px solid #333; position: fixed; top: 0; width: 100%; z-index: 1000; }
+    .mini-header .left { font-size: 24px; color: #E50914; font-family: 'Bebas Neue', sans-serif; }
+    .mini-header .right { display: flex; gap: 12px; align-items: center; }
+    .mini-header .right img { width: 30px; height: 30px; border-radius: 10px; cursor: pointer; transition: transform 0.3s; }
+    .mini-header .right img:hover { transform: scale(1.1); }
+    .spacer { height: 60px; }
+
+    .catalog-title { font-size: 48px; margin: 20px 0 10px 0; position: relative; padding-left: 12px; }
+    .catalog-title::before { content: ""; position: absolute; left: 0; top: 5px; width: 4px; height: 80%; background: #E50914; border-radius: 2px; }
+
+    footer { background: #141414; padding: 15px 20px; text-align: center; color: #fff; font-family: 'Roboto', sans-serif; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+    .footer-logo { width: 80px; height: auto; }
+    .footer-icons { display: flex; gap: 15px; justify-content: center; align-items: center; }
+    .footer-icons a img { width: 30px; height: 30px; object-fit: contain; transition: transform 0.2s; }
+    .footer-icons a img:hover { transform: scale(1.2); }
+
+    .perfil-menu {
+        position: absolute;
+        top: 60px; 
+        right: 20px;
+        background: #141414;
+        padding: 12px;
+        border-radius: 12px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        opacity: 0;
+        pointer-events: none;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.7);
+        transition: opacity 0.3s ease;
+        z-index: 2000;
+    }
+
+    .perfil-menu.show {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .perfil-opcion-box {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: white;
+        text-decoration: none;
+        padding: 8px 10px;
+        border-radius: 8px;
+        transition: background 0.2s ease;
+    }
+
+    .perfil-opcion-box:hover {
+        background: #222;
+    }
+
+    .perfil-opcion-box img {
+        width: 30px;
+        height: 30px;
+        border-radius: 8px;
+        object-fit: cover;
+    }
+  </style>
+</head>
+<body>
+
+<div class="mini-header">
+  <div class="left">CLÀUDIA'S NETFLIX</div>
+  <div class="right">
+    <img id="perfil-btn" src="casos.jpg" alt="Perfil">
+  </div>
+</div>
+
+<!-- Menú desplegable -->
+<div id="perfil-menu" class="perfil-menu">
+  <a href="catalogo.html" class="perfil-opcion-box">
+    <img src="pelis.jpg" alt="Catálogo">
+    <span>Catálogo</span>
+  </a>
+  <a href="perfil.html" class="perfil-opcion-box">
+    <img src="serie.jpg" alt="Crea tu perfil">
+    <span>Crea tu perfil</span>
+  </a>
+</div>
+
+<div class="spacer"></div>
+
+<section class="catalog-section" style="padding: 20px;">
+  <h2 class="catalog-title">Casos de Éxito</h2>
+  <div id="success-catalog" style="display: flex; flex-direction: column; gap: 25px; margin-top: 20px;">
+  <!-- Proyecto 1 -->
+<a href="https://www.elconfidencial.com/tecnologia/2025-01-22/netflix-record-suscriptores-subida-precios-1qrt_4048472/" target="_blank" style="text-decoration: none; color: inherit;">
+<div class="project-item" style="display: flex; gap: 15px; align-items: flex-start; width: 100%;">
+  <img src="noticia1.jpg" alt="Proyecto 1" style="width: 330px; height: 200px; object-fit: cover; border-radius: 8px;">
+  
+  <div style="flex: 1; display: flex; flex-direction: column;">
+
+    <h3 style="margin: 0; font-family: 'Bebas Neue', sans-serif; font-size: 35px;">
+      1. Crecimiento récord de suscriptores
+    </h3>
+
+    <!-- Frase introductoria -->
+    <p style="
+      margin: 6px 0 10px 0;
+      font-family: 'Roboto', sans-serif;
+      font-size: 17px;
+      font-style: italic;
+      color: #e6e6e6;
+      line-height: 1.4;
+    ">
+      Una cifra que evidencia la respuesta positiva del público a las nuevas propuestas de contenido.
+    </p>
+
+    <!-- Texto principal estilo noticia -->
+    <p style="
+      margin: 5px 0 0 0;
+      font-family: 'Roboto', sans-serif;
+      font-size: 15px;
+      color: #ccc;
+      line-height: 1.7; /* MÁS ESPACIADO */
+      text-align: justify; /* JUSTIFICADO */
+    ">
+Netflix agregó 19 millones de nuevos suscriptores en el cuarto trimestre de 2024, superando las expectativas gracias a su apuesta por eventos en directo como combates de boxeo y partidos de la NFL. Con esto, la plataforma alcanza más de 300 millones de suscriptores en todo el mundo, consolidándose como líder absoluto en streaming a nivel global.      
+</p>
+
+<div style="margin-top: 10px; display: flex; align-items: center; gap: 6px;">
+  <img src="confidencial.png" alt="El Confidencial" style="width: 16px; height: 16px; object-fit: contain;">
+  <span style="font-family: 'Roboto', sans-serif; font-size: 12px; color: #999;">El Confidencial</span>
+</div>
+
+  </div>
+</div>
+
+  <!-- Proyecto 2 -->
+<a href="https://tivu.es/news/netflix-acumulo-mas-de-95-mil-millones-de-horas-durante-el-primer-semestre-de-2025/" target="_blank" style="text-decoration: none; color: inherit;">
+<div class="project-item" style="display: flex; gap: 15px; align-items: flex-start; width: 100%;">
+  <img src="noticia2.png" alt="Proyecto 2" style="width: 330px; height: 200px; object-fit: cover; border-radius: 8px;">
+  
+  <div style="flex: 1; display: flex; flex-direction: column;">
+
+    <h3 style="margin: 0; font-family: 'Bebas Neue', sans-serif; font-size: 35px;">
+      2. Streaming masivo: 95 mil millones de horas vistas
+    </h3>
+
+    <!-- Frase introductoria -->
+    <p style="
+      margin: 6px 0 10px 0;
+      font-family: 'Roboto', sans-serif;
+      font-size: 17px;
+      font-style: italic;
+      color: #e6e6e6;
+      line-height: 1.4;
+    ">
+      Netflix demuestra un engagement brutal durante la primera mitad de 2025.
+    </p>
+
+    <!-- Texto principal estilo noticia -->
+    <p style="
+      margin: 5px 0 0 0;
+      font-family: 'Roboto', sans-serif;
+      font-size: 15px;
+      color: #ccc;
+      line-height: 1.7; /* MÁS ESPACIADO */
+      text-align: justify; /* JUSTIFICADO */
+    ">
+Durante la primera mitad de 2025, los usuarios de Netflix vieron un total de 95.000 millones de horas de contenido, consolidando a la plataforma como líder indiscutible en consumo de streaming. Series y películas originales contribuyeron significativamente a este récord.
+</p>
+
+<div style="margin-top: 10px; display: flex; align-items: center; gap: 6px;">
+  <img src="tivu.png" alt="Tivú" style="height: 14px; object-fit: contain;">
+  <span style="font-family: 'Roboto', sans-serif; font-size: 12px; color: #999;">Tivú</span>
+</div>
+
+  </div>
+</div>
+
+  <!-- Proyecto 3 -->
+<a href="https://www.larazon.es/television/netflix-impulsa-apuesta-videojuegos-juegos-control-movil_2025111569176fcaeba8bc0ecefe235a.html" target="_blank" style="text-decoration: none; color: inherit;">
+<div class="project-item" style="display: flex; gap: 15px; align-items: flex-start; width: 100%;">
+  <img src="noticia3.jpg" alt="Proyecto 3" style="width: 330px; height: 200px; object-fit: cover; border-radius: 8px;">
+  
+  <div style="flex: 1; display: flex; flex-direction: column;">
+
+    <h3 style="margin: 0; font-family: 'Bebas Neue', sans-serif; font-size: 35px;">
+      3. Netflix impulsa su expansión en gaming
+    </h3>
+
+    <!-- Frase introductoria -->
+    <p style="
+      margin: 6px 0 10px 0;
+      font-family: 'Roboto', sans-serif;
+      font-size: 17px;
+      font-style: italic;
+      color: #e6e6e6;
+      line-height: 1.4;
+    ">
+      ¿Te imaginas jugar en la tele usando tu móvil como mando? Netflix ya lo está haciendo posible.
+    </p>
+
+    <!-- Texto principal estilo noticia -->
+    <p style="
+      margin: 5px 0 0 0;
+      font-family: 'Roboto', sans-serif;
+      font-size: 15px;
+      color: #ccc;
+      line-height: 1.7; /* MÁS ESPACIADO */
+      text-align: justify; /* JUSTIFICADO */
+    ">
+Netflix continúa expandiendo su estrategia en el sector del gaming con una nueva función que permite jugar directamente en televisores utilizando el móvil como mando.
+La compañía afirma que estos avances buscan crear un ecosistema de entretenimiento más completo, donde series, películas y videojuegos convivan dentro de la misma experiencia.
+El objetivo: aumentar el tiempo de uso y fidelizar aún más a sus suscriptores.
+</p>
+
+<div style="margin-top: 10px; display: flex; align-items: center; gap: 6px;">
+  <img src="razon.jpg" alt="La razón" style="height: 14px; object-fit: contain;">
+  <span style="font-family: 'Roboto', sans-serif; font-size: 12px; color: #999;">La Razón</span>
+</div>
+
+  </div>
+</div>
+
+  <!-- Proyecto 4 -->
+<a href="https://www.elconfidencial.com/cultura/2025-04-03/record-ha-logrado-adolescencia-tres-semanas-despues-estreno-netflix-1qrt_4101453/" target="_blank" style="text-decoration: none; color: inherit;">
+<div class="project-item" style="display: flex; gap: 15px; align-items: flex-start; width: 100%;">
+  <img src="noticia4.jpg" alt="Proyecto 4" style="width: 330px; height: 200px; object-fit: cover; border-radius: 8px;">
+  
+  <div style="flex: 1; display: flex; flex-direction: column;">
+
+    <h3 style="margin: 0; font-family: 'Bebas Neue', sans-serif; font-size: 35px;">
+      4. Récord histórico de Adolescencia en Netflix
+    </h3>
+
+    <!-- Frase introductoria -->
+    <p style="
+      margin: 6px 0 10px 0;
+      font-family: 'Roboto', sans-serif;
+      font-size: 17px;
+      font-style: italic;
+      color: #e6e6e6;
+      line-height: 1.4;
+    ">
+      La miniserie británica alcanza más de 96 millones de visualizaciones en solo tres semanas.
+    </p>
+
+    <!-- Texto principal estilo noticia -->
+    <p style="
+      margin: 5px 0 0 0;
+      font-family: 'Roboto', sans-serif;
+      font-size: 15px;
+      color: #ccc;
+      line-height: 1.7; /* MÁS ESPACIADO */
+      text-align: justify; /* JUSTIFICADO */
+    ">
+En apenas tres semanas desde su estreno, Adolescencia acumuló 96,7 millones de visionados, lo que le permitió alcanzar la novena posición entre las series en inglés más vistas de Netflix. Esta cifra demuestra el gran impacto de la producción, superando incluso a temporadas populares como las de Stranger Things.
+</p>
+
+<div style="margin-top: 10px; display: flex; align-items: center; gap: 6px;">
+  <img src="confidencial.png" alt="El Confidencial" style="height: 14px; object-fit: contain;">
+  <span style="font-family: 'Roboto', sans-serif; font-size: 12px; color: #999;">El Confidencial</span>
+</div>
+
+  </div>
+</div>
+
+  <!-- Proyecto 5 -->
+<a href="https://www.elespanol.com/bluper/series/20251123/nuevo-exito-netflix-sello-espanol-cuenta-solo-capitulos-puede-verse-tiron-cuco-cristal/1003744026013_0.html" target="_blank" style="text-decoration: none; color: inherit;">
+<div class="project-item" style="display: flex; gap: 15px; align-items: flex-start; width: 100%;">
+  <img src="noticia5.jpg" alt="Proyecto 4" style="width: 330px; height: 200px; object-fit: cover; border-radius: 8px;">
+  
+  <div style="flex: 1; display: flex; flex-direction: column;">
+
+    <h3 style="margin: 0; font-family: 'Bebas Neue', sans-serif; font-size: 35px;">
+      5. Éxito español con El cuco de cristal en Netflix
+    </h3>
+
+    <!-- Frase introductoria -->
+    <p style="
+      margin: 6px 0 10px 0;
+      font-family: 'Roboto', sans-serif;
+      font-size: 17px;
+      font-style: italic;
+      color: #e6e6e6;
+      line-height: 1.4;
+    ">
+      Una miniserie de solo seis capítulos que ya engancha a miles de espectadores.
+    </p>
+
+    <!-- Texto principal estilo noticia -->
+    <p style="
+      margin: 5px 0 0 0;
+      font-family: 'Roboto', sans-serif;
+      font-size: 15px;
+      color: #ccc;
+      line-height: 1.7; /* MÁS ESPACIADO */
+      text-align: justify; /* JUSTIFICADO */
+    ">
+El cuco de cristal, adaptación de la novela de Javier Castillo, se ha convertido en un nuevo éxito español en Netflix. La miniserie de seis episodios sigue a una joven médica que investiga la identidad de su donante de corazón, desvelando secretos inquietantes. En pocos días, ya figura entre lo más visto en la plataforma.
+</p>
+
+<div style="margin-top: 10px; display: flex; align-items: center; gap: 6px;">
+  <img src="español.jpg" alt="El Español" style="height: 14px; object-fit: contain;">
+  <span style="font-family: 'Roboto', sans-serif; font-size: 12px; color: #999;">El Español</span>
+</div>
+
+  </div>
+</div>
+
+  </div>
+</section>
+
+<footer>
+  <img src="C.png" alt="Netflix Logo" class="footer-logo">
+  <div class="footer-icons">
+    <a href="claudiasnetflix@gmail.com"><img src="correoo.png" alt="Correo"></a>
+    <a href="tel:+34 617951819"><img src="tell.png" alt="Teléfono"></a>
+    <a href="@claudiasntfx" target="_blank"><img src="redess.png" alt="Instagram"></a>
+  </div>
+</footer>
+
+<script>
+const perfilBtn = document.getElementById("perfil-btn");
+const perfilMenu = document.getElementById("perfil-menu");
+
+// Toggle del menú al hacer click en el botón
+perfilBtn.addEventListener("click", (e) => {
+  e.stopPropagation(); // Evita que se cierre al hacer click
+  perfilMenu.classList.toggle("show");
+});
+
+// Cerrar el menú al hacer click fuera
+document.addEventListener("click", () => {
+  perfilMenu.classList.remove("show");
+});
+
+// Evitar que click dentro del menú cierre el menú
+perfilMenu.addEventListener("click", (e) => {
+  e.stopPropagation();
+});
+</script>
+</body>
+</html>
